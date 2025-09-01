@@ -1,0 +1,45 @@
+import { Controller, Get, Post, Body, Patch, Param, Delete, Req, UseGuards } from '@nestjs/common';
+import { PostsService } from './posts.service';
+import { CreatePostDto } from './dto/create-post.dto';
+import { UpdatePostDto } from './dto/update-post.dto';
+import type { Request } from 'express';
+import { RequiredRoles } from 'src/auth/required-roles.decorator';
+import { Roles } from '@prisma/client';
+import { AuthGuard } from 'src/auth/auth.guard';
+import { RoleGuard } from 'src/auth/role/role.guard';
+
+@UseGuards(AuthGuard, RoleGuard)  
+@Controller('posts')
+export class PostsController {
+  constructor(private readonly postsService: PostsService) {}
+
+  @RequiredRoles(Roles.WRITER, Roles.EDITOR)
+  @Post()
+  create(@Body() createPostDto: CreatePostDto, @Req() req: Request) {
+    return this.postsService.create({ ...createPostDto, authorId: req.user!.id });
+  }
+
+  @RequiredRoles(Roles.WRITER, Roles.EDITOR, Roles.READER)
+  findAll() {
+    return this.postsService.findAll();
+  }
+
+  @RequiredRoles(Roles.WRITER, Roles.EDITOR, Roles.READER)
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.postsService.findOne(id);
+  }
+
+
+  @RequiredRoles(Roles.WRITER, Roles.EDITOR)
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
+    return this.postsService.update(id, updatePostDto);
+  }
+
+  @RequiredRoles(Roles.ADMIN)
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.postsService.remove(id);
+  }
+}

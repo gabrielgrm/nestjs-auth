@@ -1,0 +1,95 @@
+###Create Admin
+
+POST http://localhost:3000/users
+Content-Type: application/json
+Authorization: Bearer {{ tokenAdmin }}
+
+{
+  "email": "admin@user.com",
+  "name": "Admin",
+  "password": "1234",
+  "role": "ADMIN"
+}
+
+###Create Reader
+
+POST http://localhost:3000/users
+Content-Type: application/json
+Authorization: Bearer {{ tokenAdmin }}
+
+{
+  "email": "reader@user.com",
+  "name": "Reader",
+  "password": "1234",
+  "role": "READER"
+}
+
+###Create Writer
+
+POST http://localhost:3000/users
+Content-Type: application/json
+Authorization: Bearer {{ tokenAdmin }}
+
+{
+  "email": "writer@user.com",
+  "name": "Writer",
+  "password": "1234",
+  "role": "WRITER"
+}
+
+###Create Editor
+
+POST http://localhost:3000/users
+Content-Type: application/json
+Authorization: Bearer {{ tokenAdmin }}
+
+{
+  "email": "editor@user.com",
+  "name": "Editor",
+  "password": "1234",
+  "role": "EDITOR"
+}
+###
+GET http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQHVzZXIuY29tIiwicm9sZSI6IkFETUlOIiwic3ViIjoiY21mMWVqdnJ1MDAwMHV5MXdndXV4dGR5ZSIsImlhdCI6MTc1Njc1Mzk3OSwiZXhwIjoxNzU2NzYxMTc5fQ.kUwajrD64xM14kn3yOhNt6Ub1hduiKnNWPlPRxsD1NM
+
+###
+GET http://localhost:3000/users/cmf1ejvru0000uy1wguuxtdye
+
+###
+
+# @name adminLogin
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@user.com",
+  "password": "1234"
+}
+###
+@tokenAdmin = {{ adminLogin.response.body.access_token }}
+
+###
+
+# @name readerLogin
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "reader@user.com",
+  "password": "1234"
+}
+###
+@tokenReader = {{ readerLogin.response.body.access_token }}
+
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+Authorization: Bearer {{tokenReader}}
+
+{
+  "title": "New Post",
+  "content": "This is the content of the new post.",
+  "published": true
+}
