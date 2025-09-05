@@ -12,8 +12,8 @@ export class PostsService {
     return this.prismaService.post.create({ data: createPostDto });
   }
 
-  findAll() {
-    return this.prismaService.post.findMany();
+  findAll(filter?: { published?: boolean }) {
+    return this.prismaService.post.findMany({ where: filter });
   }
 
   findOne(id: string) {

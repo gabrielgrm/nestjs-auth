@@ -2,11 +2,14 @@ import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 import { Roles } from 'generated/prisma';
+import { CaslAbilityService } from 'src/casl/casl-ability/casl-ability.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private jwtService: JwtService, private prismaService: PrismaService) {}
+  constructor(private jwtService: JwtService, private prismaService: PrismaService,
+    private caslAbilityService: CaslAbilityService
+  ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
@@ -28,6 +31,7 @@ export class AuthGuard implements CanActivate {
         throw new UnauthorizedException();
       }
       request['user'] = user;
+      this.caslAbilityService.createForUser(user);
       return true;
     } catch {
       throw new UnauthorizedException();
