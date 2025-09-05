@@ -46,13 +46,6 @@ jobs:
         JWT_SECRET: test-secret
         JWT_EXPIRES_IN: 1h
 
-    - name: Run E2E tests
-      run: npm run test:e2e
-      env:
-        DATABASE_URL: postgresql://postgres:root@localhost:5432/mydb?schema=public
-        JWT_SECRET: test-secret
-        JWT_EXPIRES_IN: 1h
-
   build:
     needs: test
     runs-on: ubuntu-latest

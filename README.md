@@ -198,18 +198,6 @@ npm run start:dev
 # Build para produção
 npm run build
 
-# Executar em produção
-npm run start:prod
-
-# Executar testes
-npm run test
-
-# Executar testes em modo watch
-npm run test:watch
-
-# Executar testes E2E
-npm run test:e2e
-
 # Linting
 npm run lint
 
@@ -227,19 +215,6 @@ docker-compose up -d
 
 # Parar o banco de dados
 docker-compose down
-```
-
-## 🧪 Testes
-
-```bash
-# Executar todos os testes
-npm run test
-
-# Executar testes com coverage
-npm run test:cov
-
-# Executar testes E2E
-npm run test:e2e
 ```
 
 ## 📝 Exemplos de Uso
@@ -326,7 +301,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 **Seu Nome**
 - GitHub: [@gabrielgrm](https://github.com/gabrielgrm)
-- LinkedIn: [grmgabriel](https://www.linkedin.com/in/grmgabriel/)
+- LinkedIn: [grmgabriel](https://linkedin.com/in/grmgabriel)
 
 ## 🙏 Agradecimentos
 
