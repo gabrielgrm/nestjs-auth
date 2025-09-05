@@ -1,4 +1,4 @@
-import type { Roles } from "generated/prisma";
+import type { Roles } from 'generated/prisma';
 
 export class CreateUserDto {
   name: string;

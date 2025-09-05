@@ -1,98 +1,340 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# NestJS Authentication & Authorization System
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Um sistema completo de autenticação e autorização construído com NestJS, Prisma, PostgreSQL e CASL para controle de permissões baseado em roles.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🚀 Funcionalidades
 
-## Description
+- **Autenticação JWT**: Sistema de login seguro com tokens JWT
+- **Autorização por Roles**: Controle de acesso baseado em roles (ADMIN, EDITOR, WRITER, READER)
+- **Controle de Permissões**: Sistema avançado de permissões usando CASL
+- **CRUD de Usuários**: Gerenciamento completo de usuários
+- **CRUD de Posts**: Sistema de posts com controle de autorização
+- **Validação de Dados**: Validação robusta com DTOs
+- **Tratamento de Erros**: Tratamento consistente de erros HTTP
+- **Variáveis de Ambiente**: Configuração flexível via variáveis de ambiente
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🛠️ Tecnologias Utilizadas
 
-## Project setup
+- **NestJS** - Framework Node.js para aplicações escaláveis
+- **Prisma** - ORM moderno para TypeScript e Node.js
+- **PostgreSQL** - Banco de dados relacional
+- **CASL** - Biblioteca para controle de permissões
+- **JWT** - Autenticação baseada em tokens
+- **bcrypt** - Criptografia de senhas
+- **Docker** - Containerização do banco de dados
 
-```bash
-$ npm install
-```
+## 📋 Pré-requisitos
 
-## Compile and run the project
+- Node.js (versão 18 ou superior)
+- npm ou yarn
+- Docker e Docker Compose
+- Git
 
-```bash
-# development
-$ npm run start
+## 🚀 Instalação e Configuração
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Run tests
+### 1. Clone o repositório
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+git clone https://github.com/seu-usuario/nestjs-auth.git
+cd nestjs-auth
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 2. Instale as dependências
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm install
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 3. Configure as variáveis de ambiente
 
-## Resources
+Copie o arquivo de exemplo e configure suas variáveis:
 
-Check out a few resources that may come in handy when working with NestJS:
+```bash
+cp env.example .env
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Edite o arquivo `.env` com suas configurações:
 
-## Support
+```env
+# Database
+DATABASE_URL="postgresql://postgres:root@localhost:5432/mydb?schema=public"
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+# JWT
+JWT_SECRET="your-super-secret-jwt-key-change-this-in-production"
+JWT_EXPIRES_IN="2h"
 
-## Stay in touch
+# Application
+PORT=3000
+NODE_ENV="development"
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### 4. Inicie o banco de dados
 
-## License
+```bash
+docker-compose up -d
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### 5. Execute as migrações do Prisma
+
+```bash
+npx prisma migrate dev
+```
+
+### 6. Gere o cliente Prisma
+
+```bash
+npx prisma generate
+```
+
+### 7. Inicie a aplicação
+
+```bash
+# Desenvolvimento
+npm run start:dev
+
+# Produção
+npm run build
+npm run start:prod
+```
+
+## 📚 Estrutura do Projeto
+
+```
+src/
+├── auth/                 # Módulo de autenticação
+│   ├── auth.controller.ts
+│   ├── auth.guard.ts
+│   ├── auth.module.ts
+│   ├── auth.service.ts
+│   ├── login.dto.ts
+│   ├── required-roles.decorator.ts
+│   └── role/
+│       └── role.guard.ts
+├── casl/                # Sistema de permissões
+│   ├── casl.module.ts
+│   └── casl-ability/
+│       └── casl-ability.service.ts
+├── posts/               # Módulo de posts
+│   ├── dto/
+│   ├── entities/
+│   ├── posts.controller.ts
+│   ├── posts.module.ts
+│   └── posts.service.ts
+├── prisma/              # Configuração do Prisma
+│   ├── prisma.module.ts
+│   └── prisma.service.ts
+├── users/               # Módulo de usuários
+│   ├── dto/
+│   ├── entities/
+│   ├── users.controller.ts
+│   ├── users.module.ts
+│   └── users.service.ts
+├── app.controller.ts
+├── app.module.ts
+├── app.service.ts
+└── main.ts
+```
+
+## 🔐 Sistema de Roles e Permissões
+
+### Roles Disponíveis
+
+- **ADMIN**: Acesso total ao sistema
+- **EDITOR**: Pode ler tudo e editar/criar posts próprios
+- **WRITER**: Pode ler tudo e editar/criar posts próprios
+- **READER**: Apenas leitura
+
+### Permissões por Role
+
+| Ação | ADMIN | EDITOR | WRITER | READER |
+|------|-------|--------|--------|--------|
+| Gerenciar usuários | ✅ | ❌ | ❌ | ❌ |
+| Ler usuários | ✅ | ❌ | ❌ | ❌ |
+| Criar posts | ✅ | ✅ | ✅ | ❌ |
+| Ler posts | ✅ | ✅ | ✅ | ✅ |
+| Editar posts próprios | ✅ | ✅ | ✅ | ❌ |
+| Deletar posts próprios | ✅ | ✅ | ✅ | ❌ |
+
+## 📡 API Endpoints
+
+### Autenticação
+
+```http
+POST /auth/login
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+```
+
+### Usuários (Requer autenticação ADMIN)
+
+```http
+GET    /users          # Listar todos os usuários
+POST   /users          # Criar novo usuário
+GET    /users/:id      # Buscar usuário por ID
+PATCH  /users/:id      # Atualizar usuário
+DELETE /users/:id      # Deletar usuário
+```
+
+### Posts (Requer autenticação)
+
+```http
+GET    /posts          # Listar posts
+POST   /posts          # Criar novo post
+GET    /posts/:id      # Buscar post por ID
+PATCH  /posts/:id      # Atualizar post
+DELETE /posts/:id      # Deletar post
+```
+
+## 🔧 Scripts Disponíveis
+
+```bash
+# Desenvolvimento
+npm run start:dev
+
+# Build para produção
+npm run build
+
+# Executar em produção
+npm run start:prod
+
+# Executar testes
+npm run test
+
+# Executar testes em modo watch
+npm run test:watch
+
+# Executar testes E2E
+npm run test:e2e
+
+# Linting
+npm run lint
+
+# Formatação de código
+npm run format
+```
+
+## 🐳 Docker
+
+O projeto inclui configuração Docker para o banco de dados PostgreSQL:
+
+```bash
+# Iniciar o banco de dados
+docker-compose up -d
+
+# Parar o banco de dados
+docker-compose down
+```
+
+## 🧪 Testes
+
+```bash
+# Executar todos os testes
+npm run test
+
+# Executar testes com coverage
+npm run test:cov
+
+# Executar testes E2E
+npm run test:e2e
+```
+
+## 📝 Exemplos de Uso
+
+### 1. Login e obtenção do token
+
+```bash
+curl -X POST http://localhost:3000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "admin@example.com",
+    "password": "admin123"
+  }'
+```
+
+### 2. Criar um usuário (requer token ADMIN)
+
+```bash
+curl -X POST http://localhost:3000/users \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+  -d '{
+    "name": "João Silva",
+    "email": "joao@example.com",
+    "password": "password123",
+    "role": "WRITER"
+  }'
+```
+
+### 3. Criar um post
+
+```bash
+curl -X POST http://localhost:3000/posts \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+  -d '{
+    "title": "Meu Primeiro Post",
+    "content": "Conteúdo do post...",
+    "published": true,
+    "authorId": "user-id-here"
+  }'
+```
+
+## 🔒 Segurança
+
+- Senhas são criptografadas usando bcrypt
+- Tokens JWT com expiração configurável
+- Validação de dados com DTOs
+- Controle de acesso baseado em roles
+- Headers de segurança configurados
+
+## 🚀 Deploy
+
+### Variáveis de Ambiente para Produção
+
+```env
+DATABASE_URL="postgresql://user:password@host:port/database"
+JWT_SECRET="your-production-secret-key"
+JWT_EXPIRES_IN="1h"
+NODE_ENV="production"
+PORT=3000
+```
+
+### Build para Produção
+
+```bash
+npm run build
+npm run start:prod
+```
+
+## 🤝 Contribuição
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 👨‍💻 Autor
+
+**Seu Nome**
+- GitHub: [@gabrielgrm](https://github.com/gabrielgrm)
+- LinkedIn: [grmgabriel](https://www.linkedin.com/in/grmgabriel/)
+
+## 🙏 Agradecimentos
+
+- [NestJS](https://nestjs.com/) - Framework incrível para Node.js
+- [Prisma](https://www.prisma.io/) - ORM moderno e poderoso
+- [CASL](https://casl.js.org/) - Sistema de autorização flexível
+- Comunidade NestJS por toda a documentação e suporte
+
+---
+
+⭐ Se este projeto foi útil para você, considere dar uma estrela no repositório!

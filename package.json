@@ -1,10 +1,10 @@
 {
   "name": "nestjs-auth",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
-  "private": true,
-  "license": "UNLICENSED",
+  "version": "1.0.0",
+  "description": "Sistema completo de autenticação e autorização com NestJS, Prisma, PostgreSQL e CASL",
+  "author": "Seu Nome",
+  "private": false,
+  "license": "MIT",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -17,12 +17,17 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:seed": "ts-node prisma/seed.ts",
+    "prisma:studio": "prisma studio"
   },
   "dependencies": {
     "@casl/ability": "^6.7.3",
     "@casl/prisma": "^1.5.2",
     "@nestjs/common": "^11.0.1",
+    "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.1",
     "@nestjs/jwt": "^11.0.0",
     "@nestjs/mapped-types": "*",
@@ -75,5 +80,27 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "keywords": [
+    "nestjs",
+    "authentication",
+    "authorization",
+    "jwt",
+    "prisma",
+    "postgresql",
+    "casl",
+    "typescript",
+    "nodejs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seu-usuario/nestjs-auth.git"
+  },
+  "bugs": {
+    "url": "https://github.com/seu-usuario/nestjs-auth/issues"
+  },
+  "homepage": "https://github.com/seu-usuario/nestjs-auth#readme",
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }

@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Req, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
@@ -8,7 +18,7 @@ import { Roles } from '@prisma/client';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { RoleGuard } from 'src/auth/role/role.guard';
 
-@UseGuards(AuthGuard, RoleGuard)  
+@UseGuards(AuthGuard, RoleGuard)
 @Controller('posts')
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
@@ -16,7 +26,10 @@ export class PostsController {
   @RequiredRoles(Roles.WRITER, Roles.EDITOR)
   @Post()
   create(@Body() createPostDto: CreatePostDto, @Req() req: Request) {
-    return this.postsService.create({ ...createPostDto, authorId: req.user!.id });
+    return this.postsService.create({
+      ...createPostDto,
+      authorId: req.user!.id,
+    });
   }
 
   @RequiredRoles(Roles.WRITER, Roles.EDITOR, Roles.READER)
@@ -29,7 +42,6 @@ export class PostsController {
   findOne(@Param('id') id: string) {
     return this.postsService.findOne(id);
   }
-
 
   @RequiredRoles(Roles.WRITER, Roles.EDITOR)
   @Patch(':id')
